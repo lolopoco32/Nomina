@@ -139,6 +139,6 @@ It contains `config.json` (window geometry, language, options) and `history.json
 nomina.py            the whole program (icons embedded)
 ```
 
-## License
+## 📄 License
 
-Add your license here (for example MIT) and include a `LICENSE` file in the repository.
+This project is licensed under the GNU General Public License v3.0 (GPLv3). Anyone is free to modify and redistribute this software, provided that any derivative works are also open-sourced under the same license terms.
