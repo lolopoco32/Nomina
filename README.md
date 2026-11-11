@@ -89,12 +89,9 @@ Nomina tries `tkinterdnd2` first and falls back to the system `tkdnd`.
 
 ## Installing as a .deb package
 
-Two build scripts are provided. Put `nomina.py` and `nomina.png` (64×64) next to the script. For sharper icons in GNOME/KDE you can also add `nomina-128.png` and `nomina-256.png`; they are picked up automatically.
-
 ### Architecture-independent (tiny, recommended)
 
 ```sh
-./build_deb_all.sh 1.0.0
 sudo apt install ./nomina_1.0.0_all.deb
 ```
 
@@ -106,8 +103,9 @@ sudo apt install ./nomina_1.0.0_all.deb
 
 ```sh
 sudo apt install python3 python3-venv python3-tk binutils dpkg-dev   # build machine only
-./build_deb.sh 1.0.0
-sudo apt install ./nomina_1.0.0_amd64.deb
+sudo apt install ./nomina_1.0.0_standalone_ubuntu_amd64.deb
+# or
+sudo apt install ./nomina_1.0.0_standalone_debian_amd64.deb
 ```
 
 - Compiled with PyInstaller (`--onedir`, no UPX), so the target machine needs no Python or Tk.
@@ -139,9 +137,6 @@ It contains `config.json` (window geometry, language, options) and `history.json
 
 ```
 nomina.py            the whole program (icons embedded)
-nomina.png           64x64 application icon (+ optional -128 / -256 variants)
-build_deb_all.sh     architecture-independent .deb builder
-build_deb.sh         standalone .deb builder (PyInstaller)
 ```
 
 ## License
