@@ -10,19 +10,40 @@
 ## Features
 
 ### Layers
-
 Layers are applied from top to bottom. You can enable/disable each one, move it up or down, and delete it. The preview updates on every keystroke.
 
 | Layer | What it does |
 |---|---|
 | **Find and replace** | Plain text or regular expression, with an optional case-sensitive match. Invalid regexes are reported inline. |
-| **Remove digits / numbers** | Removes all digits, only leading digits, or only trailing digits. Optionally cleans leftover spaces and separators (`_ - .`) at the edges. |
+| **Remove digits / numbers** | Removes all digits, only leading digits, or only trailing digits. Optionally cleans leftover spaces and separators at the edges. |
 | **Remove first / last characters** | Cuts *N* characters from the start and/or the end of the name. |
+| **Remove brackets and their content** | Round `( )`, square `[ ]`, curly `{ }` and angle `< >` (tags), nested ones included; optionally keeps the content and removes only the symbols. |
+| **Remove special characters** | Characters forbidden in file names, all symbols (keeps letters, digits, space and `_ - .`), everything that is not ASCII, or a custom set of characters, optionally replaced with a character of your choice. |
+| **Remove diacritics** | `ă â î ș ț → a a i s t`, and the same for every accented letter (`é ü ñ ç`) plus `ß æ œ ø đ ł`. |
 | **Add at start / end** | Adds a prefix and/or a suffix. The suffix goes before the extension. |
+| **Insert text at a position** | Inserts text at the start, at the end, after the first *N* characters, or before the last *N* characters. |
+| **Numbering** | Sequential numbers with a chosen number of digits (`1`, `01`, `001`), start value and step, text before/after the number (`SE01`, `01SE`), the same position options as above, and an option to restart the count in every folder. |
+| **Date and time** | Inserts the file's creation date (or last-modified date, or the current date and time) with any `strftime` format, text before/after, and the same position options. |
+| **Parent folder name** | Adds the name of the folder (or of a folder some levels up) as a prefix/suffix, with a format such as `Folder - `, `[Folder]`, `(FOLDER)`, `_Folder`, in original, lowercase or uppercase letters. |
 | **Upper / lower case** | lowercase, UPPERCASE, Title Case, or Sentence case. |
+| **Naming style** | `snake_case`, `UPPER_SNAKE_CASE`, `kebab-case`, `camelCase` or `PascalCase`. Words are split at spaces, `_ - .` and at lower→upper case changes. |
 | **Extension** | Change to a given extension, lowercase it, uppercase it, or remove it. |
 
 All layers except **Extension** work on the file name only and never touch the extension. The **Extension** layer touches only the extension.
+
+On Linux the creation date is read with `stat` (Python's standard library does not expose it); if the file system does not record it, the modification date is used instead.
+
+### Apply a layer only to some files
+
+Every layer has an **Apply to** setting: all files, only some extensions (`jpg, png`), all but some extensions, only names that contain a text, or only names that do not. The check is made against the *original* file name, and numbering counts only the files the layer applies to.
+
+### Presets
+
+The **Presets** menu saves the current stack of layers under a name and loads it back later (or deletes it). Presets are stored on disk and survive restarts.
+
+### Suggest
+
+The **Suggest** button looks at the file names in the list and builds a stack of layers it considers appropriate: it removes website addresses, bracketed text such as `[1080p]`, problematic characters, repeated spaces and stray separators, turns ALL-CAPS titles into Title Case and lowercases uppercase extensions. If you already have layers, it asks whether to replace them or add the suggestions after them. It **never renames anything**: it only fills in the layers, so you can review the preview, tweak or remove layers, and press *Rename* yourself.
 
 ### Live preview
 
